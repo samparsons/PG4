@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Todos</h1>
+    <label class="label p-2">Search: </label>
+    <input type="text" [(ngModel)]="search" class="searchTerm" >
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Target Date</th>
+                <th scope="col">Is Completed?</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        <!--  an example of referencing the index
+            <tr *ngFor="let todo of todos; let i=index" [attr.data-index]='i'>
+                <th scope="row">{{i}}</th>
+                <td>{{todo.description}}</td>
+                <td>{{todo.targetDate | date | uppercase}}</td>
+                <td>{{todo.done}}</td>
+            </tr> -->
+            <tr *ngFor="let todo of todos | filter:search">
+                <td>{{todo.description}}</td>
+                <td>{{todo.targetDate | date | uppercase}}</td>
+                <td>{{todo.done}}</td>
+            </tr>
+        </tbody>
+        <button (click)="addTodo()" class="btn button-success">add todo</button>
+    </table>
+</div>

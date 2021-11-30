@@ -1,0 +1,50 @@
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold">Kitchen Story</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Welcome to Kitchen Story, the leading grocery store app on the web. Simply add groceries that you need to be delivered to your home to your cart, checkout, and we'll do the rest!</p>
+    </div>
+    <div class="overflow-hidden">
+      <div class="container px-5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Ecologically_grown_vegetables.jpg/1600px-Ecologically_grown_vegetables.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Buy Vegetables" width="700" height="500" loading="lazy">
+      </div>
+    </div>
+</div>
+<mat-toolbar class="bg-success">
+  Choose Groceries
+</mat-toolbar>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+      <mat-card class="mat-elevation-z4 bg-white" >
+        <mat-card-header class="bg-white text-dark">
+          <mat-card-title>Grocery title {{num}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://placekitten.com/150/150">
+        <mat-card-content class="text-dark">
+          <p>
+            This is going to be a food item.
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="text-dark">
+          <div class="btn-group mb-3">
+            <button type="button" class="btn btn-outline-secondary" (click) = "fn('+')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+</svg>
+              <span class="visually-hidden">Button</span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary">
+              <span>{{n}}</span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary" (click) = "fn('-')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+              </svg>
+              <span class="visually-hidden">Button</span>
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  </div>

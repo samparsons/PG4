@@ -1,0 +1,1 @@
+insert into welcome(id,message) values (1,'my first message');
