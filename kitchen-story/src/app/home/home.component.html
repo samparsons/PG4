@@ -1,7 +1,8 @@
-<div class="px-4 pt-5 my-5 text-center border-bottom">
+<div class="px-4 pt-1 my-2 text-center border-bottom">
     <h1 class="display-4 fw-bold">Kitchen Story</h1>
-    <div class="col-lg-6 mx-auto">
+    <div class="col-lg-6 mx-auto pb-4">
       <p class="lead mb-4">Welcome to Kitchen Story, the leading grocery store app on the web. Simply add groceries that you need to be delivered to your home to your cart, checkout, and we'll do the rest!</p>
+      <a href="#shop" class="btn btn-success">Shop Now!</a>
     </div>
     <div class="overflow-hidden">
       <div class="container px-5">
@@ -9,28 +10,30 @@
       </div>
     </div>
 </div>
-<mat-toolbar class="bg-success">
-  Choose Groceries
+<mat-toolbar class="bg-success" id="shop">
+  <span fxFlex fxLayoutAlign="start">Choose Groceries</span>
+  <input type="text" class="searchTerm" placeholder="Search..." aria-label="Search" [(ngModel)]="search">
 </mat-toolbar>
 <div class="content">
+ 
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let grocery of groceryList | filter:search">
       <mat-card class="mat-elevation-z4 bg-white" >
         <mat-card-header class="bg-white text-dark">
-          <mat-card-title>Grocery title {{num}}</mat-card-title>
+          <mat-card-title>{{grocery.name}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="https://placekitten.com/150/150">
+        <img mat-card-image src="{{grocery.imgurl}}">
         <mat-card-content class="text-dark">
           <p>
-            This is going to be a food item.
+            {{grocery.description}}
           </p>
         </mat-card-content>
         <mat-card-actions class="text-dark">
           <div class="btn-group mb-3">
             <button type="button" class="btn btn-outline-secondary" (click) = "fn('+')">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-</svg>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+        </svg>
               <span class="visually-hidden">Button</span>
             </button>
             <button type="button" class="btn btn-outline-secondary">

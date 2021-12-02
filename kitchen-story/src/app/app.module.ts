@@ -18,28 +18,30 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 //Local Components
 import { HomeComponent } from './home/home.component';
-import { OrderPaymentComponent } from './order-payment/order-payment.component';
-import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CardComponent } from './card/card.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    OrderPaymentComponent,
-    OrderConfirmComponent,
     AdminDashComponent,
     AdminLoginComponent,
     NavComponent,
     FooterComponent,
     SignupComponent,
-    CardComponent
+    CartComponent,
+    CheckoutComponent,
+    PaymentConfirmComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

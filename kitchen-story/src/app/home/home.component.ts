@@ -1,3 +1,4 @@
+import { GroceryService } from '../service/data/grocery.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   n = 0;
-  constructor() { }
+  public groceryList : any;
+  search : string = '';
+
+  constructor(private api:GroceryService) { }
+  
 
   ngOnInit(): void {
+    this.api.getGrocery()
+    .subscribe(res=>{
+      this.groceryList = res;
+    })
   }
 
   fn(operator:string){
@@ -21,4 +30,7 @@ export class HomeComponent implements OnInit {
       return this.n;
     }
   }
+
+
+  
 }
