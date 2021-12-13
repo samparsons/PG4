@@ -12,17 +12,27 @@ public class Grocery {
 	private Integer Id;
 	private String name;
 	private String description;
+	private String imgurl;
 	private Double price;
 	
 	public Grocery() {
 		super();
 	}
 	
-	public Grocery(String name, String description, Double price) {
+	public Grocery(String name, String description, String imgurl, Double price) {
 		super();
 		this.name = name;
 		this.description = description;
+		this.imgurl = imgurl;
 		this.price = price;
+	}
+	
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
 	}
 
 	public Integer getId() {

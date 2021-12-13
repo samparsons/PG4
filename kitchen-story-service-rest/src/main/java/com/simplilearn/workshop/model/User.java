@@ -12,17 +12,47 @@ public class User {
 	private Integer Id;
 	private String name;
 	private String address;
+	private String username;
+	private String password;
 	private Boolean adminstatus;
 	
 	public User() {
 		super();
 	}
 
-	public User(String name, String address, Boolean adminStatus) {
+	public User(String name, String address, String username, String password, Boolean adminstatus) {
 		super();
 		this.name = name;
 		this.address = address;
-		this.adminstatus = adminStatus;
+		this.username = username;
+		this.password = password;
+		this.adminstatus = adminstatus;
+	}
+	
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getAdminstatus() {
+		return adminstatus;
+	}
+
+	public void setAdminstatus(Boolean adminstatus) {
+		this.adminstatus = adminstatus;
 	}
 
 	public Integer getId() {
@@ -49,16 +79,8 @@ public class User {
 		this.address = address;
 	}
 
-	public Boolean getAdminStatus() {
-		return adminstatus;
-	}
-
-	public void setAdminStatus(Boolean adminStatus) {
-		this.adminstatus = adminStatus;
-	}
-
 	@Override
 	public String toString() {
-		return "User [Id=" + Id + ", name=" + name + ", address=" + address + ", adminStatus=" + adminstatus + "]";
+		return "User [Id=" + Id + ", name=" + name + ", address=" + address + ", adminstatus=" + adminstatus + "]";
 	}
 }

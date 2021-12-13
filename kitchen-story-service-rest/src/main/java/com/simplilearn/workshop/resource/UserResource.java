@@ -34,8 +34,20 @@ public class UserResource {
 		return userRepository.findAll();
 	}
 	
+	@GetMapping(path="/user/login/{username}/{password}")
+	public User getUserAuth(@PathVariable String username,@PathVariable String password) {
+		if(username==null||password==null) {
+			throw new UserNotFoundException("username or password was null <br>username:" +username+"<br>password: "+password);
+		}
+		User user = userRepository.findFirstDistinctByUsernameAndPassword(username, password);
+		if (user == null) {
+			throw new UserNotFoundException("username -" +username);
+		}
+		return user;
+	}
+	
 	@GetMapping(path="/user/{theId}")
-	public User getUserById(Integer theId) {
+	public User getUserById(@PathVariable Integer theId) {
 		User User = userRepository.findById(theId).get(); 
 		return User;
 	} 
@@ -61,7 +73,7 @@ public class UserResource {
 			//System.out.println("FOUND USER: " + savedUser);
 			savedUser.setName(theUser.getName());
 			savedUser.setAddress(theUser.getAddress());
-			savedUser.setAdminStatus(theUser.getAdminStatus());
+			savedUser.setAdminstatus(theUser.getAdminstatus());
 			userRepository.save(savedUser);
 		} catch (UserNotFoundException e) {
 			throw new UserNotFoundException("id -" + theId);
