@@ -11,12 +11,14 @@ export class CartComponent implements OnInit {
   cartDetails:any = [];
   cartValue:any = [];
   total:number=0;
+  cartNumber:number=0;
   show:boolean=false;
   constructor(private internal:InternalService) { }
 
   ngOnInit(): void {
     this.getCartData();
     this.cartTotal();
+    this.cartNumberFunc();
   }
 
   getCartData(){
@@ -38,6 +40,7 @@ export class CartComponent implements OnInit {
     grocery.subtotal = Number.parseFloat(grocery.subtotal).toFixed(2);
     localStorage.setItem('localCart', JSON.stringify(this.cart));
     this.cartTotal();
+    this.cartNumberFunc();
     return grocery.qty
 
   }
@@ -54,6 +57,7 @@ export class CartComponent implements OnInit {
     }
     localStorage.setItem('localCart', JSON.stringify(this.cart));
     this.cartTotal();
+    this.cartNumberFunc();
     return grocery.qty;
   }
 
@@ -77,10 +81,28 @@ export class CartComponent implements OnInit {
     this.getCartData();
     this.cartNumberFunc();
     this.total = 0;
-    console.log(this.show);
   }
 
-  cartNumber:number=0;
+  singleDelete(id:any){
+    if(localStorage.getItem('localCart')){
+      let cartTemp = localStorage.getItem('localCart');
+      if(cartTemp === null) {
+        //do nothing
+      } else {
+        this.cartDetails = JSON.parse(cartTemp);
+        for(let i=0;i<this.cartDetails.length;i++){
+          if(this.cartDetails[i].id === id){
+            this.cartDetails.splice(i,1);
+            localStorage.setItem('localCart', JSON.stringify(this.cartDetails));
+          }
+        }
+      }
+    }
+    this.getCartData();
+    this.cartNumberFunc();
+  }
+
+  
   cartNumberFunc(){
     this.cartValue = localStorage.getItem('localCart');
     if(this.cartValue === null){

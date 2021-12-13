@@ -35,7 +35,7 @@
                     </div>
               </td>
               <td class="col-md-1">${{grocery.subtotal}}</td>
-              <td class="col-md-1"><a class="btn btn-danger">remove</a></td>
+              <td class="col-md-1"><a class="btn btn-danger" (click)="singleDelete(grocery.id)">remove</a></td>
           </tr>
       </tbody>
   </table>

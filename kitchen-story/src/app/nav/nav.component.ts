@@ -8,7 +8,6 @@ import { InternalService } from '../service/data/internal.service';
 })
 export class NavComponent implements OnInit {
   cartCount:number = 0;
-  cart:any = [];
   constructor(private internal: InternalService) { 
     this.internal.cartSubject.subscribe((data)=>{
       this.cartCount = data;
@@ -16,6 +15,5 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 }

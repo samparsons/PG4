@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError  } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
@@ -6,13 +6,14 @@ import { map, catchError, retry } from 'rxjs/operators';
 export class User {
 
   constructor(
-    public id: number,
+    public id:number,
     public name: string,
     public address: string,
     public username: string,
     public password: string,
     public adminstatus: boolean
   ){}
+  
 }
 
 @Injectable({
@@ -27,40 +28,48 @@ export class UserService {
     return this.http.get<User>(this.baseurl + "/login/"+username+"/"+password)
     .pipe(
       retry(1),
-      catchError(
-        (error) => {
-          let errorMessage = '';
-          if (error.error instanceof ErrorEvent) {
-            errorMessage = `Error: ${error.error.message}`;
-          } else {
-            errorMessage = this.getServerErrorMessage(error);
-          }
-
-          return throwError(() => new Error(errorMessage));
-        })
+      catchError(this.handleError)
     )
   }
   
-  getUser(){
-    return this.http.get<any>("http://localhost:8100/user")
+  getUser(id:number): Observable<User> {
+    return this.http.get<User>(`${this.baseurl}/${id}`)
     .pipe(
-      catchError(
-        (error) => {
-          let errorMessage = '';
-          if (error.error instanceof ErrorEvent) {
-            errorMessage = `Error: ${error.error.message}`;
-          } else {
-            errorMessage = this.getServerErrorMessage(error);
-          }
-
-          return throwError(() => new Error(errorMessage));
-        }),
+      catchError(this.handleError),
       map(
-        (res:any)=>{
+        (res:User)=>{
           return res;
         }))
   }
+
+  addUser(user:any): Observable<any> {
+      return this.http.post<any>(this.baseurl, user, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  updateUser(user:any,id:number): Observable<void> {
+      return this.http.put<void>(`${this.baseurl}/${id}`, user, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.handleError));
+    }
  
+  handleError(errorResponse: HttpErrorResponse){
+    let errorMessage = '';
+          if (errorResponse.error instanceof ErrorEvent) {
+            errorMessage = `Client Error: ${errorResponse.error.message}`;
+          } else {
+            errorMessage = `Server Error: ${this.getServerErrorMessage(errorResponse)}`;
+          }
+
+          return throwError(() => new Error(errorMessage));
+  }
 
   getServerErrorMessage(error: HttpErrorResponse): string {
     switch (error.status) {
