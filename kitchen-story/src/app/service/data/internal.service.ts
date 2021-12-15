@@ -10,5 +10,8 @@ export class InternalService {
 
   cartSubject = new Subject<any>();
   showSubject = new Subject<any>();
+  userSubject = new Subject<any>();
+  productSubject = new Subject<any>();
+
 
 }

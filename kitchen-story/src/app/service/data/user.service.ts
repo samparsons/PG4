@@ -42,6 +42,13 @@ export class UserService {
         }))
   }
 
+  getUsers(){
+    return this.http.get<any>(this.baseurl)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
   addUser(user:any): Observable<any> {
       return this.http.post<any>(this.baseurl, user, {
         headers: new HttpHeaders({
@@ -53,6 +60,15 @@ export class UserService {
 
   updateUser(user:any,id:number): Observable<void> {
       return this.http.put<void>(`${this.baseurl}/${id}`, user, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.handleError));
+    }
+
+    deleteUser(id:number): Observable<void> {
+      return this.http.delete<void>(`${this.baseurl}/${id}`, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
