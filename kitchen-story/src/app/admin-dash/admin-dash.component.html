@@ -47,12 +47,12 @@
                     <h3>Users</h3>
                     <table data-toggle="table" class="table table-hover">
                         <thead>
-                            <th scope="col">Product Image</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Price</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col">Subtotal</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Username</th>
+                            <th scope="col" class="text-center">Password</th>
+                            <th scope="col">Admin Status</th>
                             <th scope="col"></th>
                         </thead>
                         <tbody>
@@ -62,7 +62,7 @@
                                 <td class="col-md-4">{{user.address}}</td>
                                 <td class="col-md-1">{{user.username}}</td>
                                 <td class="col-md-1"><input type=password disabled style="border:none;background-color: white;" value="{{user.password}}"></td>
-                                <td class="col-md-1">{{user.username}}</td>
+                                <td class="col-md-1">{{user.adminstatus}}</td>
                                 <td class="col-md-1"><a class="btn btn-danger" (click)="singleDelete(user.id,'u')">delete</a></td>
                             </tr>
                         </tbody>
